@@ -1,0 +1,106 @@
+﻿.img {
+    position: relative;
+    /*float: left;*/
+    width:  100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+/*Admin SIDE NAV*/
+.sidenav{
+    height: 100%;
+    width: 0;/* 0 width-change this with JS*/
+    position: fixed;
+    z-index:1; /*Stay on top*/
+    top:0;
+    left: 0;
+    background-color: rgba(0,0,0,.9);
+    overflow-x: hidden; /*Disabling the horizontal scroll*/
+    padding-top: 60px; /*place content 60 pixels from the top*/
+    transition: 0.5s; /*transition effect to slide the sidenav*/
+
+
+}
+/*NAV menu LINKS*/
+.sidenav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none; /*won't look like links*/
+    font-size: 25px;
+    color: #818181;
+    display: block; /*so they dont float around eachother*/
+    transition: .3s;
+
+}
+.sidenav a:hover, .offcanvas a:focus {
+    color:#f1f1f1;
+
+}
+/*Position and style the close button (top right corner)*/
+.closebtn{
+    position: absolute;
+    top: 0;
+    right:25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+
+}
+/*Style page content - use this if you want to push the page content to the right when the side navigation is opened*/
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+
+}
+/* on smaller screens with a heights less than 450px, change the style of the sidenav to have less padding and a smaller font size*/
+@media screen and (max-height: 450px){
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+
+}
+.button {
+    font-family: sans-serif;
+    background: rgba(0,0,0,.5);
+    height: 100%;
+    width: 20px;
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+}
+.vertical-text{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    /*
+        writing-mode is an experimental css property that allows us to change how text is positioned on the page
+        https://css-tricks.com/almanac/properties/w/writing-mode/
+    */
+    writing-mode:vertical-lr;
+    color:white;
+    font-weight: bold;
+}
+
+section {
+    margin-bottom: 20px;
+
+}
+#accordion ul li{
+    list-style-type: disc;
+    margin-left: 20px;
+
+}
+.title span{
+    font-size:2em;
+}
+.invalid{
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px;
+    color:red;
+    font-weight:bold;

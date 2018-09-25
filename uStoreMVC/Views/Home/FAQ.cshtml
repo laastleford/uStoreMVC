@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "FAQ";
+}
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12 padding-right">
+                <h2 class="title text-center">
+                    <span>F</span>requently <span>A</span>sked <span>Q</span>uestions
+                </h2>
+                <div id="accordion">
+                    <h3>Refund and Return Policies</h3>
+
+                    <p>If you are not satisfied with your purchase for any reason, you unfortunately did not read our Refund and Return Policies prior to your purchase or blatantly ignored that there will not be any returns for any reason.</p>
+
+                    <h3>Who can I contact if I have questions about my account?</h3>
+                    <p>Please visit our <a href="@Url.Action("Contact", "Home")">Contact</a> page</p>
+                    <h3>Where can I learn about finding accurate sizing of all articles for my dog?</h3>
+                    <p>If you see the attached guidelines, your pet's accurate sizing may be determined from the diagram.  Customers are encouraged to measure their pooch prior to purchase.  Again, we don't refund.</p>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+@section css {<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+}
+@section scripts {
+
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+</script>
+    }

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Contact Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    
+    <style>
+        /* Remove the navbar's default rounded borders and increase the bottom margin */
+        .navbar {
+            margin-bottom: 50px;
+            border-radius: 0;
+        }
+
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-image: url('images/banner-1557832_1280.jpg');
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Barking Plaid</h1>
+            <p>For dogs that are mad about high fashion.</p>
+            <p><em>Providing pooches with uplifting fashion since 2018</em></p>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">BP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="contact.html"></a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Products</a></li>
+
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+
+    <div id="contact-page" class="container">
+        <div class="bg">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="title text-center">Contact <strong>Us</strong></h2>
+                    <div id="gmap" class="contact-map google-maps">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3102.023561985009!2d-94.61137504846033!3d38.96912997945933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0e925e366ed0f%3A0x73aec4617abd2f03!2sCentriq+Training!5e0!3m2!1sen!2sus!4v1468708493385" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="contact-form">
+                        <h2 class="title text-center">Get In Touch</h2>
+                        <div class="status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="get" action="#" onsubmit="validateForm(event)">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Name">
+                                <span id="nameVal" class="invalid"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" name="email" class="form-control" placeholder="Email">
+                                <span id="emailVal" class="invalid"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="subject" class="form-control" placeholder="Subject">
+                                <span id="subjectVal" class="invalid"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="message" id="message" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                <span id="messageVal" class="invalid"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact-info">
+                        <h2 class="title text-center">Contact Info</h2>
+                        <address>
+                            <p>Barking Plaid</p>
+                            <p>8700 Stateline Ave</p>
+                            <p>Leawood, KS 66206</p>
+                            <p>Phone: 913-322-7000</p>
+                            <p>Email: info@centriqcstore.com</p>
+                        </address>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br><br>
+
+    <footer class="container-fluid text-center">
+        <p>Barking Plaid Copyright</p>
+        <form class="form-inline">
+            Get deals:
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Sign Up</button>
+        </form>
+    </footer>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src=" bootstrap/js/formValidation.js"></script>
+</body>
+</html>

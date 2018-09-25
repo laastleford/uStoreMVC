@@ -1,0 +1,86 @@
+﻿@*Create @model declaration.  We want to make this a strongly typed view and use our ContactViewModel*@
+@model uStoreMVC.Models.ContactViewModel
+
+
+@{
+    ViewBag.Title = "Contact";
+}
+    <!-- Content -->
+
+<div id="contact-page" class="container">
+    <div class="bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="title text-center">Contact <strong>Us</strong></h2>
+                <div id="gmap" class="contact-map google-maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3102.023561985009!2d-94.61137504846033!3d38.96912997945933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c0e925e366ed0f%3A0x73aec4617abd2f03!2sCentriq+Training!5e0!3m2!1sen!2sus!4v1468708493385" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="contact-form">
+                    <h2 class="title text-center">Get In Touch</h2>
+                    <div class="status alert alert-success" style="display: none"></div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group col-md-6">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", @placeholder = "Subject" })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @id = "message", @rows = 8, @placeholder = "Your Message Here" })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <input type="submit" value="Send Message" class="btn btn-primary pull-right" name="submit" />
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="contact-info">
+                    <h2 class="title text-center">Contact Info</h2>
+                    <address>
+                        <p>Barking Plaid</p>
+                        <p>8700 Stateline Ave</p>
+                        <p>Leawood, KS 66206</p>
+                        <p>Phone: 913-322-7000</p>
+                        <p>Email: info@centriqcstore.com</p>
+                    </address>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+
+@section scripts{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/formValidation.js"></script>}
