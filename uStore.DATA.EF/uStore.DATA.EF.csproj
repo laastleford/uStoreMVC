@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +61,11 @@
     <Compile Include="Employee.cs">
       <DependentUpon>uStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\CategoriesMetadata.cs" />
+    <Compile Include="Metadata\DepartmentMetadata.cs" />
+    <Compile Include="Metadata\EmployeesMetadata.cs" />
+    <Compile Include="Metadata\ProductMetadata.cs" />
+    <Compile Include="Metadata\ProductStatusMetadata.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>uStore.tt</DependentUpon>
     </Compile>
@@ -70,6 +76,7 @@
       <DependentUpon>uStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ImageServices.cs" />
     <Compile Include="uStore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>uStore.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WishlistItem.cs">
+      <DependentUpon>uStore.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

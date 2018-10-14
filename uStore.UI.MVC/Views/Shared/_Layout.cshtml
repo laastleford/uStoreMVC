@@ -1,86 +1,110 @@
-﻿<!DOCTYPE html>
+﻿@using uStore.UI.MVC.Models
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
     <title>@ViewBag.Title Home | Barking Plaid</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     @RenderSection("css", required: false)
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+    @*<link href="~/Content/bootstrap2.css" rel="stylesheet" />*@
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/indexbootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/indexbootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
 
-    <link href="~/Content/custom2.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-    <link href="~/Content/bootstrap2.css" rel="stylesheet" />
-    <style>
-        /*Below is my custom.css*/
-
-        /* Remove the navbar's default rounded borders and increase the bottom margin */
-
-        .navbar {
-            margin-bottom: 50px;
-            border-radius: 0;
-        }
-
-        /* Remove the jumbotron's default bottom margin */
-        .jumbotron {
-            margin-bottom: 0;
-        }
-
-        /* Add a gray background color and some padding to the footer */
-        footer {
-            background-image: url('../../Content/images/banner-1557832_1280.jpg');
-            padding: 25px;
-        }
-    </style>
-    </>
+    <link href="~/themes/css/bootstrappage.css" rel="stylesheet" />
+    <link href="~/themes/css/flexslider.css" rel="stylesheet" />
+    <link href="~/themes/css/main.css" rel="stylesheet" />
 </head>
 <body>
+    <div id="top-bar" class="container">
+        <div class="jumbotron">
+            <div class="container text-center">
+                <h1>Barking Plaid</h1>
 
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1>Barking Plaid</h1>
-            <p><em>Providing pooches with uplifting fashion since 2018</em></p>
+                <h4>Providing pooches with uplifting fashion since 2018</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span4">
+                <form method="POST" class="search_form">
+                    <input type="text" class="input-block-level search-query" Placeholder="Search...">
+                </form>
+            </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
+    <div id="wrapper" class="container">
+        <section class="navbar main-menu">
+            <div class="navbar-inner main-menu">
+                <a href="index.html" class="logo pull-left"></a>
+                <nav id="menu" class="pull-right">
+                    <ul>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action("Index","Home")">BP</a>
+                        <li><a href="@Url.Action("Index", "Products")">Clothing</a></li>
+                        <li><a href="@Url.Action("Index", "Employees")">Employees</a></li>
+                        <li><a href="@Url.Action("Index", "Departments")">Departments</a></li>
+                        @*<li><a href="@Url.Action("Index", "ProductStatus")">Product Status</a></li>*@
+                        <li><a href="@Url.Action("Index", "ProductCategories")">Product Categories</a></li>
+
+                        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                        <li><a href="@Url.Action("FAQ", "Home")">FAQ</a></li>
+
+                        @{
+                            Dictionary<int, ShoppingCartViewModel> shoppingCart = null;
+
+                            //Check the global shopping cart
+                            if (Session["cart"] != null)
+                            {
+                                //if it has stuff in it, reassign to the local
+                                shoppingCart = (Dictionary<int, ShoppingCartViewModel>)Session["cart"];
+
+                                if (shoppingCart.Count > 0)
+                                {
+                                    <li><a href="@Url.Action("Index", "ShoppingCart")">Cart</a></li>
+
+                                }
+                            }
+                        }
+
+
+                        @*Checking for a logged in user*@
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="@Url.Action("LogOff","Account")">Log out</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Wishlist")">Wishlist</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Register","Account")"><i class="fa fa-user"></i> Register</a></li>
+                            <li><a href="@Url.Action("Login","Account")"><i class="fa fa-lock"></i> Login</a></li>
+                        }
+                    </ul>
+                </nav>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Deals</a></li>
-                    <li><a href="@Url.Action("FAQ","Home")">FAQ</a></li>
-                    <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="row">
-        <div class="col-md-12">
-            @if (ViewBag.ErrorMessage != null)
+        </section>
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (ViewBag.ErrorMessage != null)
             {
-                <div class="text-center alert alert-danger">
-                    @ViewBag.ErrorMessage
-                </div>
-            }
+                    <div class="text-center alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
         </div>
+        @RenderBody()
     </div>
-    @RenderBody()
-
 
 
 
@@ -106,25 +130,33 @@
         </div>
 
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-        function openNav() {
-            document.getElementById('adminSideNav').style.width = "250px";
-            document.getElementById('adminLink').style.display = 'none';
-        }
-        function closeNav() {
-            document.getElementById('adminSideNav').style.width = "0";
-            document.getElementById('adminLink').style.display = 'block';
-        }
-    </script>
-    <script type="text/javascript" src="~/Scripts/SelectedNav.js"></script>
-
-    @RenderSection("scripts", required: false)
-
-
-
-
 </body>
 </html>
+<script src="~/themes/js/jquery-1.7.2.min.js"></script>
+<script src="~/indexbootstrap/js/bootstrap.min.js"></script>
+@*<script src="~/themes/js/superfish.js"></script>*@
+<script src="~/themes/js/jquery.scrolltotop.js"></script>
+<script src="~/themes/js/jquery-1.7.2.min.js"></script>
+@*<script src="~/themes/js/common.js"></script>*@
+<script src="~/themes/js/jquery.flexslider-min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+    function openNav() {
+        document.getElementById('adminSideNav').style.width = "250px";
+        document.getElementById('adminLink').style.display = 'none';
+    }
+    function closeNav() {
+        document.getElementById('adminSideNav').style.width = "0";
+        document.getElementById('adminLink').style.display = 'block';
+    }
+</script>
+@*<script type="text/javascript" src="~/Scripts/SelectedNav.js"></script>*@
+@RenderSection("scripts", required: false)
+
+
+
+
+

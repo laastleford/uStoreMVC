@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>FAQ</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        /* Remove the navbar's default rounded borders and increase the bottom margin */
+        .navbar {a
+            margin-bottom: 50px;
+            border-radius: 0;
+        }
+
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-image: url('images/banner/banner-1557832_1280.jpg');
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Barking Plaid</h1>
+            <p><em>Providing pooches with uplifting fashion since 2018</em></p>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">BP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="FAQ.html"></a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 padding-right">
+                    <h2 class="title text-center">
+                        <span>F</span>requently <span>A</span>sked <span>Q</span>uestions
+                    </h2>
+                    <div id="accordion">
+                        <h3>Refund and Return Policies</h3>
+
+                        <p>If you are not satisfied with your purchase for any reason, you unfortunately did not read our Refund and Return Policies prior to your purchase or blatantly ignored that there will not be any returns for any reason.</p>
+
+                        <h3>Who can I contact if I have questions about my account?</h3>
+                        <p>Please visit our<a href="contact.html">contact</a> page</p>
+                        <h3>Where can I learn about finding accurate sizing of all articles for my dog?</h3>
+                        <p>If you see the attached guidelines, your pet's accurate sizing may be determined from the diagram.  Customers are encouraged to measure their pooch prior to purchase.  Again, we don't refund.</p>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <!--footer-->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright &copy; 2017 Centriq cStore. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+        <div id="adminLink" onclick="openNav()" class="button">
+            <span class="vertical-text">ADMIN</span>
+        </div>
+        <div id="adminSideNav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                &times;
+            </a>
+            <a href="@Url.Action(" Index","UsersAdmin")">User Admin</a>
+            <a href="@Url.Action(" Index", "UsersAdmin" )">Roles Admin</a>
+            <a href="#">Manage Titles</a>
+            <a href="#">Manage Authors</a>
+        </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+    function openNav() {
+            document.getElementById('adminSideNav').style.width = "250px";
+            document.getElementById('adminLink').style.display = 'none';
+        }
+        function closeNav() {
+            document.getElementById('adminSideNav').style.width = "0";
+            document.getElementById('adminLink').style.display = 'block';
+        }
+    </script>
+    <script>
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+    </script>
+</body>
+</html>

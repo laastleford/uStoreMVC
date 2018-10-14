@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="uStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="uStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -61,6 +61,15 @@
           <Property Name="ProductStatusID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusName" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="WishlistItems">
+          <Key>
+            <PropertyRef Name="WishlistItemID" />
+          </Key>
+          <Property Name="WishlistItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Departments_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
@@ -98,7 +107,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductCategories_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
@@ -133,6 +144,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WishlistItems_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="WishlistItems" Type="Self.WishlistItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WishlistItems">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="uStoreModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
@@ -140,6 +163,7 @@
           <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductStatuses" EntityType="Self.ProductStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WishlistItems" EntityType="Self.WishlistItems" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Departments_Employees" Association="Self.FK_Departments_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Departments" EntitySet="Departments" />
@@ -164,9 +188,12 @@
             <End Role="ProductStatuses" EntitySet="ProductStatuses" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_WishlistItems_Products" Association="Self.FK_WishlistItems_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="WishlistItems" EntitySet="WishlistItems" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="uStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -229,6 +256,7 @@
           <Property Name="ProductStatusID" Type="Byte" Nullable="false" />
           <NavigationProperty Name="ProductCategories" Relationship="Self.FK_ProductCategories_Products" FromRole="Products" ToRole="ProductCategories" />
           <NavigationProperty Name="ProductStatus" Relationship="Self.FK_Products_ProductStatuses" FromRole="Products" ToRole="ProductStatuses" />
+          <NavigationProperty Name="WishlistItems" Relationship="uStoreModel.FK_WishlistItems_Products" FromRole="Product" ToRole="WishlistItem" />
         </EntityType>
         <EntityType Name="ProductStatus">
           <Key>
@@ -341,7 +369,34 @@
             <End Role="ProductStatuses" EntitySet="ProductStatuses" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="WishlistItems" EntityType="uStoreModel.WishlistItem" />
+          <AssociationSet Name="FK_WishlistItems_Products" Association="uStoreModel.FK_WishlistItems_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="WishlistItem" EntitySet="WishlistItems" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="WishlistItem">
+          <Key>
+            <PropertyRef Name="WishlistItemID" />
+          </Key>
+          <Property Name="WishlistItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Product" Relationship="uStoreModel.FK_WishlistItems_Products" FromRole="WishlistItem" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_WishlistItems_Products">
+          <End Type="uStoreModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="uStoreModel.WishlistItem" Role="WishlistItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WishlistItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -407,6 +462,16 @@
               <MappingFragment StoreEntitySet="ProductStatuses">
                 <ScalarProperty Name="ProductStatusID" ColumnName="ProductStatusID" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WishlistItems">
+            <EntityTypeMapping TypeName="uStoreModel.WishlistItem">
+              <MappingFragment StoreEntitySet="WishlistItems">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="WishlistItemID" ColumnName="WishlistItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

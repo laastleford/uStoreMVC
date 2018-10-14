@@ -17,6 +17,8 @@
         <AssociationConnector Association="uStoreModel.FK_Employees_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="uStoreModel.FK_ProductCategories_Products" ManuallyRouted="false" />
         <AssociationConnector Association="uStoreModel.FK_Products_ProductStatuses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="uStoreModel.WishlistItem" Width="1.5" PointX="10.25" PointY="4.5" />
+        <AssociationConnector Association="uStoreModel.FK_WishlistItems_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

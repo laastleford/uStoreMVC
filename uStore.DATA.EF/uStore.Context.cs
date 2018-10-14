@@ -31,5 +31,6 @@ namespace uStore.DATA.EF
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductStatus> ProductStatuses { get; set; }
+        public virtual DbSet<WishlistItem> WishlistItems { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace uStore.DATA.EF
         public Product()
         {
             this.ProductCategories = new HashSet<ProductCategory>();
+            this.WishlistItems = new HashSet<WishlistItem>();
         }
     
         public int ProductID { get; set; }
@@ -31,5 +32,7 @@ namespace uStore.DATA.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
         public virtual ProductStatus ProductStatus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WishlistItem> WishlistItems { get; set; }
     }
 }

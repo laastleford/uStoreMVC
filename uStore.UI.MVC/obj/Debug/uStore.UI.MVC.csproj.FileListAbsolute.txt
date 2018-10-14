@@ -69,3 +69,9 @@ C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.
 C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\obj\Debug\uStore.UI.MVC.csprojResolveAssemblyReference.cache
 C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\obj\Debug\uStore.UI.MVC.dll
 C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\obj\Debug\uStore.UI.MVC.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Net.Http.Formatting.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Web.Http.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Web.Http.WebHost.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Net.Http.Formatting.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Web.Http.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.UI.MVC\bin\System.Web.Http.WebHost.xml

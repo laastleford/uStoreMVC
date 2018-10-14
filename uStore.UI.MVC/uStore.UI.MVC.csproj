@@ -64,12 +64,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -170,6 +182,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -180,14 +193,21 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductStatusController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
+    <Compile Include="Models\uStoreEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -201,23 +221,86 @@
     <Content Include="Content\bootstrap\js\jQuery.min.js" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\custom2.css" />
-    <Content Include="Content\images\adorable-animal-blur-825949.jpg" />
-    <Content Include="Content\images\banner-1557832_1280.jpg" />
-    <Content Include="Content\images\braydon-anderson-105552-unsplash.jpg" />
-    <Content Include="Content\images\cartier-cartier-721262-unsplash.jpg" />
-    <Content Include="Content\images\charles-deluvio-540418-unsplash.jpg" />
-    <Content Include="Content\images\charles-deluvio-540420-unsplash.jpg" />
-    <Content Include="Content\images\charles-deluvio-703834-unsplash.jpg" />
-    <Content Include="Content\images\delaney-dawson-130928-unsplash.jpg" />
-    <Content Include="Content\images\elias-castillo-747678-unsplash.jpg" />
-    <Content Include="Content\images\jim-kalligas-494290-unsplash.jpg" />
-    <Content Include="Content\images\yuki-dog-485187-unsplash.jpg" />
+    <Content Include="Content\images\15383567391379569.png" />
+    <Content Include="Content\images\15383576506828476.png" />
+    <Content Include="Content\images\15383585977099876 %281%29.jpg" />
+    <Content Include="Content\images\15383585977099876 %282%29.jpg" />
+    <Content Include="Content\images\15383585977099876 %283%29.jpg" />
+    <Content Include="Content\images\15383585977099876 %284%29.jpg" />
+    <Content Include="Content\images\15383585977099876.jpg" />
+    <Content Include="Content\images\15383585977099876.png" />
+    <Content Include="Content\images\68f605f1-2e2b-4530-a8f4-f56744dd22e1.jpg" />
+    <Content Include="Content\images\banner\banner-1557832_1280.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="indexbootstrap\css\bootstrap-responsive.css" />
+    <Content Include="indexbootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="indexbootstrap\css\bootstrap.css" />
+    <Content Include="indexbootstrap\css\bootstrap.min.css" />
+    <Content Include="indexbootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="indexbootstrap\img\glyphicons-halflings.png" />
+    <Content Include="indexbootstrap\js\bootstrap.js" />
+    <Content Include="indexbootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="themes\css\bootstrappage.css" />
+    <Content Include="themes\css\flexslider.css" />
+    <Content Include="themes\css\jquery.fancybox.css" />
+    <Content Include="themes\css\main.css" />
+    <Content Include="themes\images\arrow-p.png" />
+    <Content Include="themes\images\arrow-pleft.png" />
+    <Content Include="themes\images\bg.png" />
+    <Content Include="themes\images\carousel\banner-1.jpg" />
+    <Content Include="themes\images\carousel\banner-2.jpg" />
+    <Content Include="themes\images\clients\1.png" />
+    <Content Include="themes\images\clients\14.png" />
+    <Content Include="themes\images\clients\2.png" />
+    <Content Include="themes\images\clients\3.png" />
+    <Content Include="themes\images\clients\35.png" />
+    <Content Include="themes\images\clients\4.png" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware1.jpg" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware2.jpg" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware3.jpg" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware4.jpg" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware5.jpg" />
+    <Content Include="themes\images\cloth\bootstrap-women-ware6.jpg" />
+    <Content Include="themes\images\feature_img_1.png" />
+    <Content Include="themes\images\feature_img_2.png" />
+    <Content Include="themes\images\feature_img_3.png" />
+    <Content Include="themes\images\gotop.png" />
+    <Content Include="themes\images\ladies\1.jpg" />
+    <Content Include="themes\images\ladies\2.jpg" />
+    <Content Include="themes\images\ladies\3.jpg" />
+    <Content Include="themes\images\ladies\4.jpg" />
+    <Content Include="themes\images\ladies\5.jpg" />
+    <Content Include="themes\images\ladies\6.jpg" />
+    <Content Include="themes\images\ladies\7.jpg" />
+    <Content Include="themes\images\ladies\8.jpg" />
+    <Content Include="themes\images\ladies\9.jpg" />
+    <Content Include="themes\images\line_bar.png" />
+    <Content Include="themes\images\logo.png" />
+    <Content Include="themes\images\m1.png" />
+    <Content Include="themes\images\m2.png" />
+    <Content Include="themes\images\m3.png" />
+    <Content Include="themes\images\m4.png" />
+    <Content Include="themes\images\m5.png" />
+    <Content Include="themes\images\m6.png" />
+    <Content Include="themes\images\pageBanner.png" />
+    <Content Include="themes\images\project_img2.jpg" />
+    <Content Include="themes\images\project_img3.jpg" />
+    <Content Include="themes\images\project_img4.jpg" />
+    <Content Include="themes\images\project_img6.jpg" />
+    <Content Include="themes\js\common.js" />
+    <Content Include="themes\js\css\style.css" />
+    <Content Include="themes\js\images\banner-1.jpg" />
+    <Content Include="themes\js\images\banner-2.jpg" />
+    <Content Include="themes\js\jquery-1.7.2.min.js" />
+    <Content Include="themes\js\jquery.fancybox.js" />
+    <Content Include="themes\js\jquery.flexslider-min.js" />
+    <Content Include="themes\js\jquery.scrolltotop.js" />
+    <Content Include="themes\js\superfish.js" />
     <Content Include="_archive\bootstrap\css\bootstrap.css" />
     <Content Include="_archive\bootstrap\js\bootstrap.min.js" />
     <Content Include="_archive\bootstrap\js\formValidation.js" />
@@ -236,6 +319,62 @@
     <Content Include="_archive\images\jim-kalligas-494290-unsplash.jpg" />
     <Content Include="_archive\images\yuki-dog-485187-unsplash.jpg" />
     <Content Include="_archive\index.html" />
+    <Content Include="_archive\indexshopper.html" />
+    <Content Include="_archive\themes\css\bootstrappage.css" />
+    <Content Include="_archive\themes\css\flexslider.css" />
+    <Content Include="_archive\themes\css\jquery.fancybox.css" />
+    <Content Include="_archive\themes\css\main.css" />
+    <Content Include="_archive\themes\images\arrow-p.png" />
+    <Content Include="_archive\themes\images\arrow-pleft.png" />
+    <Content Include="_archive\themes\images\bg.png" />
+    <Content Include="_archive\themes\images\carousel\banner-1.jpg" />
+    <Content Include="_archive\themes\images\carousel\banner-2.jpg" />
+    <Content Include="_archive\themes\images\clients\1.png" />
+    <Content Include="_archive\themes\images\clients\14.png" />
+    <Content Include="_archive\themes\images\clients\2.png" />
+    <Content Include="_archive\themes\images\clients\3.png" />
+    <Content Include="_archive\themes\images\clients\35.png" />
+    <Content Include="_archive\themes\images\clients\4.png" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware1.jpg" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware2.jpg" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware3.jpg" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware4.jpg" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware5.jpg" />
+    <Content Include="_archive\themes\images\cloth\bootstrap-women-ware6.jpg" />
+    <Content Include="_archive\themes\images\feature_img_1.png" />
+    <Content Include="_archive\themes\images\feature_img_2.png" />
+    <Content Include="_archive\themes\images\feature_img_3.png" />
+    <Content Include="_archive\themes\images\gotop.png" />
+    <Content Include="_archive\themes\images\ladies\1.jpg" />
+    <Content Include="_archive\themes\images\ladies\2.jpg" />
+    <Content Include="_archive\themes\images\ladies\3.jpg" />
+    <Content Include="_archive\themes\images\ladies\4.jpg" />
+    <Content Include="_archive\themes\images\ladies\5.jpg" />
+    <Content Include="_archive\themes\images\ladies\6.jpg" />
+    <Content Include="_archive\themes\images\ladies\7.jpg" />
+    <Content Include="_archive\themes\images\ladies\8.jpg" />
+    <Content Include="_archive\themes\images\ladies\9.jpg" />
+    <Content Include="_archive\themes\images\line_bar.png" />
+    <Content Include="_archive\themes\images\logo.png" />
+    <Content Include="_archive\themes\images\m1.png" />
+    <Content Include="_archive\themes\images\m2.png" />
+    <Content Include="_archive\themes\images\m3.png" />
+    <Content Include="_archive\themes\images\m4.png" />
+    <Content Include="_archive\themes\images\m5.png" />
+    <Content Include="_archive\themes\images\m6.png" />
+    <Content Include="_archive\themes\images\pageBanner.png" />
+    <Content Include="_archive\themes\images\project_img2.jpg" />
+    <Content Include="_archive\themes\images\project_img3.jpg" />
+    <Content Include="_archive\themes\images\project_img4.jpg" />
+    <Content Include="_archive\themes\images\project_img6.jpg" />
+    <Content Include="_archive\themes\js\common.js" />
+    <Content Include="_archive\themes\js\css\style.css" />
+    <Content Include="_archive\themes\js\jquery-1.7.2.min.js" />
+    <Content Include="_archive\themes\js\jquery.fancybox.js" />
+    <Content Include="_archive\themes\js\jquery.flexslider-min.js" />
+    <Content Include="_archive\themes\js\jquery.scrolltotop.js" />
+    <Content Include="_archive\themes\js\superfish.js" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -326,9 +465,16 @@
     <Content Include="Views\ProductStatus\Details.cshtml" />
     <Content Include="Views\ProductStatus\Edit.cshtml" />
     <Content Include="Views\ProductStatus\Index.cshtml" />
+    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="themes\js\js\" />
+    <Folder Include="_archive\themes\js\images\" />
+    <Folder Include="_archive\themes\js\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

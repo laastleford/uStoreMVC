@@ -1,0 +1,5 @@
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.DOMAIN.MVC\bin\Debug\uStore.DOMAIN.MVC.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.DOMAIN.MVC\bin\Debug\uStore.DOMAIN.MVC.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.DOMAIN.MVC\obj\Debug\uStore.DOMAIN.MVC.csprojResolveAssemblyReference.cache
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.DOMAIN.MVC\obj\Debug\uStore.DOMAIN.MVC.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\MVC1\uStoreMVC\uStore.DOMAIN.MVC\obj\Debug\uStore.DOMAIN.MVC.pdb

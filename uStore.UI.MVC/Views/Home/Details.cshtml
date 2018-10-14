@@ -1,0 +1,28 @@
+﻿@model uStore.DATA.EF.Product
+@{
+    ViewBag.Title = "Product - " + Model.ProductName;
+}
+<h2>@ViewBag.Title</h2>
+<p>
+    <img alt="@Model.ProductName"
+         src="~/Content/images/@Model.ProductImage" />
+</p>
+<div id="product-details">
+    @*<p>
+        <em>Genre:</em>
+        @Model.Genre.Name
+    </p>*@
+    <p>
+        <em>Product:</em>
+        @Model.ProductName
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}",
+Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to Cart", "AddToCart",
+        "ShoppingCart", new { id = Model.ProductID }, "")
+    </p>
+</div>

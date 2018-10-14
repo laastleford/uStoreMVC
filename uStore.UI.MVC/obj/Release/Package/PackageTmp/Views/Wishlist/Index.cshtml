@@ -1,0 +1,49 @@
+﻿@model IEnumerable<uStore.DATA.EF.WishlistItem>
+
+@{
+    ViewBag.Title = "Your Wishlist";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.Count() <1)
+{
+    <h5 class="text-center"> Your wishlist is empty.</h5>
+}
+else { 
+<table class="table">
+    <tr>
+        <th>
+           Product
+        </th>
+        <th>
+           Date Added
+        </th>
+        <th>
+           Price
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           <img src="~/Content/images/t_@item.Product.ProductImage"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>
+        <td>
+           @string.Format($"{item.DateAdded:d}")
+        </td>
+        <td>
+            @string.Format($"{item.Product.Price:c}")
+        </td>
+        <td>
+           <a href="@Url.Action("Delete", "Wishlist", new {id = item.WishlistItemID})">Remove from Wishlist</a>
+        </td>
+    </tr>
+}
+
+</table>
+}
