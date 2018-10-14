@@ -385,7 +385,7 @@ namespace uStore.UI.MVC.Controllers
             return View(model);
         }
 
-        //
+        //meaninless
         // POST: /Account/LogOff
         [HttpGet]
         //[ValidateAntiForgeryToken]
